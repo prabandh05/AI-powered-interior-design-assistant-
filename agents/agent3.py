@@ -1,6 +1,8 @@
 import os
 import sys
 import json
+import requests
+import uuid
 from typing import Dict, Any, List
 from bytez import Bytez
 from dotenv import load_dotenv
@@ -104,8 +106,35 @@ Realistic materials and textures.
         return final_prompt.strip()
 
     # --------------------------------------------------
-    # Image Generation
+    # Image Generation & Local Storage
     # --------------------------------------------------
+
+    def _save_image_locally(self, image_url: str) -> str:
+        """Downloads an image from a URL and saves it to the local images directory."""
+        try:
+            # Get project root
+            root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            img_dir = os.path.join(root_dir, "images")
+            if not os.path.exists(img_dir):
+                os.makedirs(img_dir)
+            
+            # Generate a unique filename
+            filename = f"design_{uuid.uuid4().hex[:8]}.png"
+            filepath = os.path.join(img_dir, filename)
+            
+            # Download and save
+            response = requests.get(image_url, stream=True, timeout=15)
+            if response.status_code == 200:
+                with open(filepath, 'wb') as f:
+                    for chunk in response.iter_content(1024):
+                        f.write(chunk)
+                
+                # Return the local URL path (relative to the API)
+                return f"http://127.0.0.1:8000/images/{filename}"
+            return image_url # Fallback to original
+        except Exception as e:
+            print(f"Error saving image locally: {e}")
+            return image_url
 
     def generate_image(self, agent1_output: Dict[str, Any], agent2_output: Dict[str, Any]) -> Dict[str, Any]:
 
@@ -118,12 +147,14 @@ Realistic materials and textures.
             results = self.model.run(prompt)
             
             if results.error:
+                print(f"[AGENT3] Bytez Error: {results.error}")
                 return {
                     "error": str(results.error),
                     "image": None,
                     "used_intensity": intensity
                 }
             
+            print(f"[AGENT3] Bytez returned: {results.output}")
             return {
                 "error": None,
                 "image": results.output,
@@ -187,7 +218,11 @@ No markdown.
 
             for item in raw_data:
                 if isinstance(item, str) and item.startswith("http"):
-                    links.append(item)
+                    print(f"[AGENT3] Attempting local save for: {item}")
+                    # Save locally and get the local URL
+                    local_url = self._save_image_locally(item)
+                    print(f"[AGENT3] Local URL generated: {local_url}")
+                    links.append(local_url)
 
         return {
             "visuals": visual_res,

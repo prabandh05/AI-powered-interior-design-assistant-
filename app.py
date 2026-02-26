@@ -1,6 +1,8 @@
 import os
 import json
-from flask import Flask, request, jsonify
+import uuid
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from models import db, User
 from auth_utils import encode_token, token_required
@@ -10,11 +12,16 @@ from services.pipeline import InteriorDesignPipeline
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
 # Configurations
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'instance', 'users.db')
 DATASET_PATH = os.path.join(BASE_DIR, "dataset", "indian_interior_v2.json")
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 if not os.path.exists(os.path.dirname(DB_PATH)):
     os.makedirs(os.path.dirname(DB_PATH))
@@ -39,6 +46,10 @@ with app.app_context():
 @app.route('/')
 def index():
     return jsonify({"message": "Welcome to AI Interior Design Assistant API"})
+
+@app.route('/images/<path:filename>')
+def serve_image(filename):
+    return send_from_directory(os.path.join(BASE_DIR, 'images'), filename)
 
 # --- Authentication Routes ---
 
@@ -86,9 +97,34 @@ def logout(current_user_id):
 @app.route("/generate-design", methods=["POST"])
 # @token_required # Uncomment if you want to protect this route
 def generate_design():
-    user_input = request.json
+    # Handle both JSON and Multipart data
+    if request.is_json:
+        user_input = request.json
+        image_path = None
+    else:
+        # Handle multipart/form-data
+        user_input = {
+            "description_text": request.form.get("description_text"),
+            "theme": request.form.get("theme"),
+            "budget": request.form.get("budget"),
+        }
+        
+        # Check if previous_scene_data is present (for iterations)
+        prev_data = request.form.get("previous_scene_data")
+        if prev_data:
+            user_input["previous_scene_data"] = json.loads(prev_data)
+            
+        file = request.files.get("image")
+        image_path = None
+        if file and file.filename != "":
+            filename = f"upload_{uuid.uuid4().hex[:8]}_{file.filename}"
+            image_path = os.path.join(UPLOAD_FOLDER, filename)
+            file.save(image_path)
+            user_input["image_path"] = image_path
+
     if not user_input:
         return jsonify({"status": "error", "message": "No input provided"}), 400
+        
     result = pipeline.run(user_input)
     return jsonify(result)
 

@@ -50,7 +50,7 @@ function Home() {
                     </h1>
 
                     <p style={{ marginBottom: "40px", fontSize: "18px", color: "#ddd" }}>
-                        Luxury. Intelligence. Precision.
+                        Intelligence. Precision.
                     </p>
 
                     <button

@@ -15,7 +15,7 @@ genai.configure(api_key=api_key)
 
 from PIL import Image
 
-def generate_response(prompt: str, model_name: str = "models/gemini-2.5-flash", image_path: str = None) -> str:
+def generate_response(prompt: str, model_name: str = "gemini-2.5-flash", image_path: str = None) -> str:
     """
     Helper function to generate a response from the Gemini model.
     """
