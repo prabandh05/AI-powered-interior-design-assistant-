@@ -3,7 +3,7 @@ Hackathon Execution Checklist
 🚀 PHASE 0 — Project Initialization
 🔧 Environment Setup
 
-[ ] Create GitHub repository
+[*] Create GitHub repository
 
 [ ] Define folder structure
 
