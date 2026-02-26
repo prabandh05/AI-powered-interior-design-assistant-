@@ -97,17 +97,6 @@ The project includes a robust **Admin Intelligence Suite** designed for SaaS-lev
 
 ---
 
-##  License
-This project can be licensed under the **MIT License**. This is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don't hold you liable.
-
-To apply this to your GitHub Repository:
-1. Go to your repo on GitHub.
-2. Click **Add file** -> **Create new file**.
-3. Type `LICENSE` in the filename.
-4. Click **Choose a license template** on the right.
-5. Select **MIT License** and click **Review and Submit**.
-
----
 
 **Designed with love for Indian Homes.**
-> "Architecture is a visual art, and the buildings speak for themselves." — Gruha Assistant makes that voice yours.
+ "Architecture is a visual art, and the buildings speak for themselves." — Gruha Assistant makes that voice yours.
