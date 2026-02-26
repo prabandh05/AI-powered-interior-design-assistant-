@@ -1,0 +1,40 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;
+}
+
+/* Rotating circular gallery */
+.rotating-circle {
+  animation: rotateClock 25s linear infinite;
+}
+
+/* Clock rotation */
+@keyframes rotateClock {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* White faded glow border */
+.rotating-circle img {
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.4),
+    0 0 35px rgba(255, 255, 255, 0.2);
+  transition: 0.3s ease;
+}
+
+/* Stronger glow on hover */
+.rotating-circle img:hover {
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.7),
+    0 0 60px rgba(255, 255, 255, 0.4);
+}

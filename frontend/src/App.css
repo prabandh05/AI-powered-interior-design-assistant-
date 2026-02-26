@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* LEFT SIDE */
+.left-section {
+  width: 50%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  background: #000;
+  color: white;
+}
+
+.left-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+  z-index: 1;
+}
+
+.left-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  gap: 20px;
+  margin-top: -60px;
+}
+
+.title {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.get-started {
+  width: 200px;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: gold;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.get-started:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+}
+
+/* RIGHT SIDE */
+.right-section {
+  width: 50%;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Gallery */
+.gallery-container {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin-top: -96px;
+}
+
+.card {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.6);
+}
+
+.c1 {
+  top: 0;
+  left: 80px;
+  transform: rotate(-8deg);
+}
+
+.c2 {
+  top: 40px;
+  left: 160px;
+  transform: rotate(6deg);
+}
+
+.c3 {
+  top: 120px;
+  left: 0;
+  transform: rotate(-4deg);
+}
+
+.c4 {
+  top: 180px;
+  left: 120px;
+  transform: rotate(8deg);
+}
+
+.c5 {
+  top: 40px;
+  left: 250px;
+  transform: rotate(4deg);
+}
+
+.c6 {
+  top: 200px;
+  left: 230px;
+  transform: rotate(-6deg);
+}
+
+.c7 {
+  top: 250px;
+  left: 60px;
+  transform: rotate(5deg);
+}

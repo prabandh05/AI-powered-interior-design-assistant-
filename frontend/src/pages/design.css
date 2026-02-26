@@ -1,0 +1,111 @@
+/* FULL PAGE BACKGROUND */
+.design-container {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Dark overlay for readability */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(3px);
+}
+
+/* Glass card */
+.design-card {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 750px;
+    padding: 50px;
+
+    background: rgba(17, 17, 17, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+
+    color: white;
+}
+
+/* Title */
+.design-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+}
+
+/* Form spacing */
+.form-group {
+    margin-bottom: 25px;
+}
+
+/* Inputs */
+textarea,
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #1a1a1a;
+    color: white;
+    outline: none;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Budget grid */
+.budget-grid {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.budget-box {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    background: #1a1a1a;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.budget-box:hover {
+    background: #2a2a2a;
+}
+
+.budget-box.active {
+    border: 2px solid gold;
+}
+
+/* Button */
+.generate-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 30px;
+    border: none;
+    background: gold;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Image preview */
+.preview-img {
+    margin-top: 15px;
+    width: 100%;
+    border-radius: 12px;
+}
