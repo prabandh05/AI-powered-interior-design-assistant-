@@ -1,35 +1,42 @@
 {
-  "design_summary": "Transform a plain and functional study room into a culturally rich and opulent Rajasthani Mughal inspired space. The design will focus on integrating vibrant colors, intricate patterns, luxurious textiles, and ornate decorative elements to evoke the grandeur of historical Indian palaces, while maintaining a conducive environment for study.",
+  "design_summary": "Transforming a plain and functional study room into an opulent and culturally rich Rajasthani Mughal sanctuary, focusing on intricate patterns, rich textiles, warm lighting, and traditional decor to evoke a sense of heritage and grandeur while maintaining a productive environment.",
   "space_type": "study_room",
   "theme": "rajasthani_mughal",
   "required_items": [
     {
-      "item_type": "accent_wall_paint",
-      "category": "wall_treatment",
+      "item_type": "carpet",
+      "category": "textile",
       "priority": 1,
-      "placement": "Behind the desk or on a dominant wall to create a focal point.",
-      "reason": "To introduce a rich, vibrant base color characteristic of Rajasthani Mughal aesthetics, immediately enhancing the room's warmth and cultural depth."
+      "placement": "Under the desk area, extending to define the study zone",
+      "reason": "To introduce traditional Rajasthani patterns and rich colors, anchoring the space with warmth and cultural depth, and enhancing comfort."
     },
     {
       "item_type": "curtains",
       "category": "textile",
       "priority": 2,
-      "placement": "Over existing windows.",
-      "reason": "To add a layer of opulent textile, such as silk or velvet with traditional motifs or embroidery, providing privacy, light control, and softening the room's edges in line with the theme."
+      "placement": "Over all windows",
+      "reason": "To add a layer of luxurious texture and pattern, control natural light with heavy drapes, and provide privacy in a style befitting Mughal aesthetics."
     },
     {
-      "item_type": "carpet",
-      "category": "textile",
+      "item_type": "accent_wall_paint",
+      "category": "wall_treatment",
       "priority": 3,
-      "placement": "Centrally under the desk area or within the main study zone.",
-      "reason": "To ground the space with traditional patterns and rich colors (e.g., Persian or Mughal style), adding comfort, absorbing sound, and defining the study area with elegance."
+      "placement": "On a prominent wall, ideally behind the desk or a main seating area",
+      "reason": "To create a focal point with a deep, rich jewel-toned color (e.g., emerald green, royal blue, or deep maroon) characteristic of traditional Indian palaces, setting a majestic backdrop."
     },
     {
       "item_type": "ceiling_light",
       "category": "lighting",
       "priority": 4,
-      "placement": "Central to the room's ceiling.",
-      "reason": "To replace generic lighting with an ornate, brass or carved wooden fixture, providing warm, ambient light that reflects the period's grandeur and style."
+      "placement": "Central overhead position",
+      "reason": "To provide ambient general lighting and introduce an ornate, decorative fixture such as a brass lantern or a miniature chandelier, reflecting Mughal architectural lighting styles."
+    },
+    {
+      "item_type": "storage_unit",
+      "category": "storage",
+      "priority": 5,
+      "placement": "Along an available wall, possibly as a credenza or low cabinet",
+      "reason": "To provide essential additional storage for study materials and enhance the theme with carved wood, brass inlay, or other intricate decorative elements."
     }
   ],
   "visualization": {
@@ -37,34 +44,36 @@
       "Rajasthani",
       "Mughal",
       "opulent",
-      "intricate",
-      "traditional",
-      "regal",
-      "artisanal",
-      "luxurious",
-      "vibrant",
-      "historical"
+      "traditional Indian",
+      "ornate",
+      "royal",
+      "intricate patterns",
+      "warm",
+      "inviting",
+      "heritage"
     ],
     "color_palette": [
-      "deep jewel tones (emerald green, ruby red, sapphire blue)",
-      "gold",
-      "ivory",
-      "sandstone",
-      "terracotta",
-      "saffron",
-      "deep teal"
+      "Deep Maroons",
+      "Emerald Greens",
+      "Sapphire Blues",
+      "Gold",
+      "Saffron",
+      "Ivory",
+      "Cream",
+      "Terracotta",
+      "Brass"
     ],
     "material_focus": [
-      "carved wood",
-      "silk",
-      "velvet",
-      "brass",
-      "marble accents",
-      "intricate inlay",
-      "gold accents",
-      "woven textiles"
+      "Carved Dark Wood",
+      "Silk",
+      "Velvet",
+      "Brocade",
+      "Brass",
+      "Copper",
+      "Inlay Work (mother-of-pearl or stone)",
+      "Wool (for carpets)"
     ],
-    "lighting_style": "Warm, ambient, decorative, patterned light (jali-inspired), soft, inviting.",
-    "visual_prompt": "A study room infused with Rajasthani Mughal grandeur. Walls painted in a deep, rich hue, adorned with intricate traditional art. Windows draped in luxurious silk or velvet curtains with gold embroidery. The floor features an ornate, hand-knotted carpet in jewel tones. A carved wooden bookshelf with detailed craftsmanship houses literary treasures, while an ornate brass ceiling lamp casts a warm, inviting glow, highlighting the rich textures and patterns."
+    "lighting_style": "Warm, ambient, decorative, with ornate fixtures creating intricate light and shadow patterns.",
+    "visual_prompt": "A luxurious Rajasthani Mughal study room with an accent wall in a deep emerald green, rich patterned carpet under a dark carved wooden desk, heavy silk curtains framing the windows, ornate brass lanterns providing warm light, and walls adorned with framed Mughal miniature paintings. The space is filled with the grandeur and intricate details of Indian royal heritage."
   }
 }
