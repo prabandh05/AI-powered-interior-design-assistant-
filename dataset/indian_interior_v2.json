@@ -1,7 +1,7 @@
 {
   "metadata": {
     "version": "1.0",
-    "total_items": 500,
+    "total_items": 539,
     "supported_themes": [
       "traditional_indian",
       "contemporary_indian",
@@ -9259,6 +9259,701 @@
       "price": 2500,
       "quality_level": "low",
       "product_link": "https://flipkart.com/home/accent_wall_paint/1000",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "study_table_041",
+      "item_type": "study_table",
+      "name": "DIY Warli-Painted Wooden Plank Desk",
+      "category": "furniture",
+      "themes": [
+        "traditional_indian"
+      ],
+      "space_types": [
+        "study_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2000",
+      "is_diy": true
+    },
+    {
+      "id": "study_table_042",
+      "item_type": "study_table",
+      "name": "Jaipur Hand-Painted Mango Wood Mini Desk",
+      "category": "furniture",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "study_room",
+        "bedroom"
+      ],
+      "price": 3500,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/study_table/2001",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "study_table_043",
+      "item_type": "study_table",
+      "name": "DIY Rajasthani Stencilled Crate Desk",
+      "category": "furniture",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "study_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2002",
+      "is_diy": true
+    },
+    {
+      "id": "ergonomic_chair_036",
+      "item_type": "ergonomic_chair",
+      "name": "DIY Upcycled Fabric Task Chair",
+      "category": "furniture",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "study_room",
+        "home_office"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2003",
+      "is_diy": true
+    },
+    {
+      "id": "ergonomic_chair_037",
+      "item_type": "ergonomic_chair",
+      "name": "Hand-Carved Teak High-Back Study Chair",
+      "category": "furniture",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "study_room",
+        "home_office"
+      ],
+      "price": 28000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/ergonomic_chair/2004",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "ergonomic_chair_038",
+      "item_type": "ergonomic_chair",
+      "name": "Rajasthani Painted Low Morha Cushion Chair",
+      "category": "furniture",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "study_room"
+      ],
+      "price": 2500,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/ergonomic_chair/2005",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "ergonomic_chair_039",
+      "item_type": "ergonomic_chair",
+      "name": "DIY Mirrorwork Cushion Wooden Chair",
+      "category": "furniture",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "study_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2006",
+      "is_diy": true
+    },
+    {
+      "id": "bookshelf_041",
+      "item_type": "bookshelf",
+      "name": "Jaipur Blue-Painted Bamboo Book Stand",
+      "category": "furniture",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "study_room",
+        "bedroom"
+      ],
+      "price": 2500,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/bookshelf/2007",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "bookshelf_042",
+      "item_type": "bookshelf",
+      "name": "DIY Rajasthani Stencilled Crate Bookshelf",
+      "category": "furniture",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "study_room",
+        "living_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2008",
+      "is_diy": true
+    },
+    {
+      "id": "wall_art_053",
+      "item_type": "wall_art",
+      "name": "Dhokra Large Tribal Wall Sculpture (Premium)",
+      "category": "decor",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room"
+      ],
+      "price": 35000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/wall_art/2009",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "wall_art_054",
+      "item_type": "wall_art",
+      "name": "Rajasthani Miniature Print (Budget Frame)",
+      "category": "decor",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "living_room",
+        "study_room"
+      ],
+      "price": 1500,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/wall_art/2010",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "wall_art_055",
+      "item_type": "wall_art",
+      "name": "DIY Rajasthani Jali Stencil Canvas Art",
+      "category": "decor",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2011",
+      "is_diy": true
+    },
+    {
+      "id": "wall_panel_036",
+      "item_type": "wall_panel",
+      "name": "Block Print Fabric Pinboard Panel",
+      "category": "wall_treatment",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "study_room",
+        "bedroom"
+      ],
+      "price": 2000,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/wall_panel/2012",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "wall_panel_037",
+      "item_type": "wall_panel",
+      "name": "Ikat Print Paper Wall Panel",
+      "category": "wall_treatment",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 1800,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/wall_panel/2013",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "wall_panel_038",
+      "item_type": "wall_panel",
+      "name": "Reclaimed Teak Live-Edge Accent Wall Panel",
+      "category": "wall_treatment",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room"
+      ],
+      "price": 32000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/wall_panel/2014",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "wall_panel_039",
+      "item_type": "wall_panel",
+      "name": "Blue Pottery Tile Mini Panel",
+      "category": "wall_treatment",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "living_room",
+        "dining_room"
+      ],
+      "price": 3000,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/wall_panel/2015",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "wall_panel_040",
+      "item_type": "wall_panel",
+      "name": "DIY Rajasthani Mirror Mosaic Panel",
+      "category": "wall_treatment",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2016",
+      "is_diy": true
+    },
+    {
+      "id": "floor_lamp_036",
+      "item_type": "floor_lamp",
+      "name": "Solid Brass Jaali Arc Floor Lamp (Premium)",
+      "category": "lighting",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "study_room"
+      ],
+      "price": 45000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/floor_lamp/2017",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "floor_lamp_037",
+      "item_type": "floor_lamp",
+      "name": "Carved Mango Wood Tall Floor Lamp",
+      "category": "lighting",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 25000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/floor_lamp/2018",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "floor_lamp_038",
+      "item_type": "floor_lamp",
+      "name": "Rajasthani Painted Tin Lantern Floor Lamp",
+      "category": "lighting",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 3500,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/floor_lamp/2019",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "floor_lamp_039",
+      "item_type": "floor_lamp",
+      "name": "DIY Brass Diya Stack Floor Lamp",
+      "category": "lighting",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2020",
+      "is_diy": true
+    },
+    {
+      "id": "ceiling_light_046",
+      "item_type": "ceiling_light",
+      "name": "Carved Teak Beam Chandelier (Premium)",
+      "category": "lighting",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "dining_room"
+      ],
+      "price": 40000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/ceiling_light/2021",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "ceiling_light_047",
+      "item_type": "ceiling_light",
+      "name": "Jaipur Lac-Painted Clay Pendant (Budget)",
+      "category": "lighting",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "dining_room"
+      ],
+      "price": 2000,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/ceiling_light/2022",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "ceiling_light_048",
+      "item_type": "ceiling_light",
+      "name": "DIY Rajasthani Mirrorwork Pendant",
+      "category": "lighting",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2023",
+      "is_diy": true
+    },
+    {
+      "id": "carpet_047",
+      "item_type": "carpet",
+      "name": "DIY Kantha Patchwork Floor Mat",
+      "category": "textile",
+      "themes": [
+        "traditional_indian"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2024",
+      "is_diy": true
+    },
+    {
+      "id": "carpet_048",
+      "item_type": "carpet",
+      "name": "Hand-Tufted Ikat Wool Carpet (Premium)",
+      "category": "textile",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 30000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/carpet/2025",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "carpet_049",
+      "item_type": "carpet",
+      "name": "Hand-Knotted Natural Fibre Jute Carpet (Premium)",
+      "category": "textile",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "study_room"
+      ],
+      "price": 22000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/carpet/2026",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "carpet_050",
+      "item_type": "carpet",
+      "name": "DIY Hand-Stamped Dhurrie Carpet",
+      "category": "textile",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2027",
+      "is_diy": true
+    },
+    {
+      "id": "curtains_041",
+      "item_type": "curtains",
+      "name": "Handwoven Silk-Cotton Ikat Curtains (Premium)",
+      "category": "textile",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 28000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/curtains/2028",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "curtains_042",
+      "item_type": "curtains",
+      "name": "Naturally Dyed Hemp Curtain Panels",
+      "category": "textile",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 9000,
+      "quality_level": "medium",
+      "product_link": "https://flipkart.com/home/curtains/2029",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "curtains_043",
+      "item_type": "curtains",
+      "name": "Hand-Woven Khadi Linen Curtains (Premium)",
+      "category": "textile",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "bedroom"
+      ],
+      "price": 24000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/curtains/2030",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "storage_unit_041",
+      "item_type": "storage_unit",
+      "name": "Carved Mango Wood 2-Door Cabinet",
+      "category": "storage",
+      "themes": [
+        "traditional_indian"
+      ],
+      "space_types": [
+        "bedroom",
+        "study_room"
+      ],
+      "price": 12000,
+      "quality_level": "medium",
+      "product_link": "https://flipkart.com/home/storage_unit/2031",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "storage_unit_042",
+      "item_type": "storage_unit",
+      "name": "DIY Block Print Fabric Storage Cube Set",
+      "category": "storage",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "bedroom",
+        "study_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2032",
+      "is_diy": true
+    },
+    {
+      "id": "storage_unit_043",
+      "item_type": "storage_unit",
+      "name": "Rajasthani Lac-Painted Wooden Box (Small)",
+      "category": "storage",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "hallway"
+      ],
+      "price": 1800,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/storage_unit/2033",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "storage_unit_044",
+      "item_type": "storage_unit",
+      "name": "Blue Pottery Knob Cane Cabinet (Budget)",
+      "category": "storage",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "living_room"
+      ],
+      "price": 4500,
+      "quality_level": "low",
+      "product_link": "https://flipkart.com/home/storage_unit/2034",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "storage_unit_045",
+      "item_type": "storage_unit",
+      "name": "DIY Rajasthani Painted Sanduk (Trunk)",
+      "category": "storage",
+      "themes": [
+        "rajasthani_mughal"
+      ],
+      "space_types": [
+        "bedroom",
+        "hallway"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2035",
+      "is_diy": true
+    },
+    {
+      "id": "decor_statue_047",
+      "item_type": "decor_statue",
+      "name": "DIY Wire-Frame Ganesha Sculpture",
+      "category": "decor",
+      "themes": [
+        "contemporary_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "study_room"
+      ],
+      "price": 0,
+      "quality_level": "low",
+      "product_link": "",
+      "diy_link": "https://youtube.com/watch?v=diy2036",
+      "is_diy": true
+    },
+    {
+      "id": "decor_statue_048",
+      "item_type": "decor_statue",
+      "name": "Large Bidriware Metal Floor Sculpture",
+      "category": "decor",
+      "themes": [
+        "rustic_indian"
+      ],
+      "space_types": [
+        "living_room"
+      ],
+      "price": 45000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/decor_statue/2037",
+      "diy_link": "",
+      "is_diy": false
+    },
+    {
+      "id": "accent_wall_paint_047",
+      "item_type": "accent_wall_paint",
+      "name": "Venetian Marble Polished Plaster (Ivory)",
+      "category": "wall_treatment",
+      "themes": [
+        "traditional_indian"
+      ],
+      "space_types": [
+        "living_room",
+        "dining_room"
+      ],
+      "price": 28000,
+      "quality_level": "premium",
+      "product_link": "https://flipkart.com/home/accent_wall_paint/2038",
       "diy_link": "",
       "is_diy": false
     }
