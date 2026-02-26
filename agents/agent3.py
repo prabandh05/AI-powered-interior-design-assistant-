@@ -113,21 +113,29 @@ Realistic materials and textures.
         intensity = self._get_design_intensity(agent1_output.get("budget"))
 
         print(f"\n--- Generating Image | Budget Tier: {intensity.upper()} ---")
-
-        results = self.model.run(prompt)
-
-        if results.error:
+        
+        try:
+            results = self.model.run(prompt)
+            
+            if results.error:
+                return {
+                    "error": str(results.error),
+                    "image": None,
+                    "used_intensity": intensity
+                }
+            
             return {
-                "error": results.error,
+                "error": None,
+                "image": results.output,
+                "used_intensity": intensity
+            }
+        except Exception as e:
+            print(f"Agent 3 Image Generation Error: {e}")
+            return {
+                "error": str(e),
                 "image": None,
                 "used_intensity": intensity
             }
-
-        return {
-            "error": None,
-            "image": results.output,
-            "used_intensity": intensity
-        }
 
     # --------------------------------------------------
     # LLM Guide (Separate from Image Logic)

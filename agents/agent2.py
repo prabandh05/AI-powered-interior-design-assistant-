@@ -57,7 +57,11 @@ class DesignPlannerAgent:
 
         prompt = self._build_prompt(scene_data)
 
-        response_text = generate_response(prompt)
+        try:
+            response_text = generate_response(prompt)
+        except Exception as e:
+            print(f"Agent 2 API Error: {e}")
+            response_text = ""
 
         parsed_output = self._safe_json_parse(response_text)
 

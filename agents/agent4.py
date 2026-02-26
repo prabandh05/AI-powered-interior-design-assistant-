@@ -1,27 +1,45 @@
-from typing import List, Dict
+from typing import List, Dict, Any
 
 
 class Agent4ProcurementEngine:
-    def __init__(self, dataset: Dict):
+
+    def __init__(self, dataset: Dict[str, Any]):
         self.items = dataset["items"]
         self.price_ranges = dataset["metadata"]["price_ranges_inr"]
 
-    # -------------------------
-    # FILTERING
-    # -------------------------
-    def filter_items(self, theme, space_type, item_type, strict=True):
+    # --------------------------------------------------
+    # FILTERING WITH LAYERED FALLBACK
+    # --------------------------------------------------
+
+    def filter_items(self, theme, space_type, item_type):
+
+        # Strict: theme + space
+        results = [
+            item for item in self.items
+            if item["item_type"] == item_type
+            and theme in item["themes"]
+            and space_type in item.get("space_types", [])
+            and not item["is_diy"]
+        ]
+        if results:
+            return results
+
+        # Relaxed: theme only
         results = [
             item for item in self.items
             if item["item_type"] == item_type
             and theme in item["themes"]
             and not item["is_diy"]
         ]
-        if strict:
-            results = [
-                item for item in results
-                if space_type in item.get("space_types", [])
-            ]
-        return results
+        if results:
+            return results
+
+        # Last fallback: item_type only
+        return [
+            item for item in self.items
+            if item["item_type"] == item_type
+            and not item["is_diy"]
+        ]
 
     def get_diy_items(self, theme, item_type):
         return [
@@ -31,11 +49,13 @@ class Agent4ProcurementEngine:
             and item["is_diy"]
         ]
 
-    # -------------------------
+    # --------------------------------------------------
     # PRICE CLASSIFICATION
-    # -------------------------
+    # --------------------------------------------------
+
     def classify_by_price_range(self, items):
         buckets = {"low": [], "medium": [], "premium": []}
+
         for item in items:
             for tier, limits in self.price_ranges.items():
                 if tier == "diy":
@@ -43,17 +63,19 @@ class Agent4ProcurementEngine:
                 if limits["min"] <= item["price"] <= limits["max"]:
                     buckets[tier].append(item)
                     break
+
         return buckets
 
     def select_cheapest(self, items):
         return sorted(items, key=lambda x: x["price"])[0] if items else None
 
-    # -------------------------
-    # MINIMUM COST ESTIMATION
-    # -------------------------
-    def estimate_min_remaining_cost(self, theme, space_type, remaining_items):
+    # --------------------------------------------------
+    # ESTIMATE MINIMUM REMAINING COST
+    # --------------------------------------------------
+
+    def estimate_min_remaining_cost(self, theme, space_type, remaining_item_types):
         cost = 0
-        for item_type in remaining_items:
+        for item_type in remaining_item_types:
             candidates = self.filter_items(theme, space_type, item_type)
             buckets = self.classify_by_price_range(candidates)
             cheapest = self.select_cheapest(buckets["low"])
@@ -61,31 +83,44 @@ class Agent4ProcurementEngine:
                 cost += cheapest["price"]
         return cost
 
-    # -------------------------
-    # BUILD PLAN (UPGRADED)
-    # -------------------------
-    def build_plan(self, theme, space_type, required_items, target_budget, tier_order):
+    # --------------------------------------------------
+    # BUILD PLAN (PRIORITY AWARE)
+    # --------------------------------------------------
+
+    def build_plan(
+        self,
+        theme: str,
+        space_type: str,
+        required_items: List[Dict],
+        target_budget: int,
+        tier_order: List[str]
+    ):
+
+        # 🔥 Sort by priority
+        required_items = sorted(required_items, key=lambda x: x["priority"])
+        required_item_types = [item["item_type"] for item in required_items]
+
         plan_items = []
         total_cost = 0
 
-        for idx, item_type in enumerate(required_items):
-            remaining_items = required_items[idx + 1:]
+        for idx, item_type in enumerate(required_item_types):
+            remaining_item_types = required_item_types[idx + 1:]
 
             candidates = self.filter_items(theme, space_type, item_type)
-            if not candidates:
-                candidates = self.filter_items(theme, space_type, item_type, strict=False)
-
             buckets = self.classify_by_price_range(candidates)
+
             selected_item = None
 
             min_remaining_cost = self.estimate_min_remaining_cost(
-                theme, space_type, remaining_items
+                theme, space_type, remaining_item_types
             )
 
             for tier in tier_order:
                 candidate = self.select_cheapest(buckets[tier])
                 if candidate:
-                    projected_cost = total_cost + candidate["price"] + min_remaining_cost
+                    projected_cost = (
+                        total_cost + candidate["price"] + min_remaining_cost
+                    )
                     if projected_cost <= target_budget:
                         selected_item = candidate
                         break
@@ -101,6 +136,7 @@ class Agent4ProcurementEngine:
                 continue
 
             total_cost += selected_item["price"]
+
             plan_items.append({
                 "item_type": item_type,
                 "selection": selected_item["name"],
@@ -115,16 +151,18 @@ class Agent4ProcurementEngine:
             "items": plan_items
         }
 
-    # -------------------------
-    # GENERATE PLANS
-    # -------------------------
+    # --------------------------------------------------
+    # GENERATE MULTIPLE COMPARISON PLANS
+    # --------------------------------------------------
+
     def generate_comparison_plans(
         self,
         theme: str,
         space_type: str,
-        required_items: List[str],
+        required_items: List[Dict],
         user_budget: int
     ):
+
         budget_targets = [
             user_budget,
             int(user_budget * 0.7),
@@ -138,6 +176,7 @@ class Agent4ProcurementEngine:
         ]
 
         plans = []
+
         for i, (budget, tiers) in enumerate(zip(budget_targets, tier_preferences), 1):
             plan = self.build_plan(theme, space_type, required_items, budget, tiers)
             plan["plan_name"] = f"Plan {i}"
@@ -147,11 +186,13 @@ class Agent4ProcurementEngine:
         return plans
 
 
-# -------------------------
+# --------------------------------------------------
 # TEST RUN
-# -------------------------
+# --------------------------------------------------
+
 if __name__ == "__main__":
-    print("Agent 4 is running ✅")
+
+    print("Agent 4 is running (Priority Aware) ✅")
 
     import os, json
 
@@ -163,10 +204,16 @@ if __name__ == "__main__":
 
     engine = Agent4ProcurementEngine(dataset)
 
+    required_items = [
+        {"item_type": "study_table", "priority": 1},
+        {"item_type": "curtains", "priority": 2},
+        {"item_type": "ceiling_light", "priority": 3}
+    ]
+
     plans = engine.generate_comparison_plans(
         theme="rajasthani_mughal",
         space_type="study_room",
-        required_items=["study_table", "curtains", "ceiling_light"],
+        required_items=required_items,
         user_budget=50000
     )
 

@@ -35,7 +35,11 @@ class SceneStructuringAgent:
 
         prompt = self._build_prompt(user_input, has_image=bool(image_path))
 
-        response_text = generate_response(prompt, image_path=image_path)
+        try:
+            response_text = generate_response(prompt, image_path=image_path)
+        except Exception as e:
+            print(f"Agent 1 API Error: {e}")
+            response_text = ""
 
         structured_output = self._safe_json_parse(response_text)
 
