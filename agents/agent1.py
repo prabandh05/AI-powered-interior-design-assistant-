@@ -228,9 +228,9 @@ User Input:
 # -----------------------------
 if __name__ == "__main__":
     test_input = {
-        "description_text": "This is my home office/study area. I have a desk and a whiteboard here. I want to transform this into a space with a Rajasthani – Mughal theme while keeping it functional for work.",
-        "preferred_theme": "rajasthani_mughal",
-        "budget": "60000"
+        "description_text": "This is my current workspace at home. It feels very plain and functional. I have a desk, a monitor, and a whiteboard on the wall. I want to transform it into something more royal and artistic, inspired by old Indian palaces. I love intricate patterns and rich warm colors.",
+        "preferred_theme": "Rajasthani – Mughal Style",
+        "budget": "75000"
     }
 
     # Path to test image
