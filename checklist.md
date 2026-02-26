@@ -22,21 +22,21 @@ Hackathon Execution Checklist
 🗂 PHASE 1 — Project Structure
 📁 Folder Organization
 
-[ ] Create app.py
+[*] Create app.py
 
-[ ] Create agents/ folder
+[*] Create agents/ folder
 
-[ ] Create dataset/ folder
+[*] Create dataset/ folder
 
-[ ] Create static/
+[*] Create static/
 
-[ ] Create templates/
+[*] Create templates/
 
-[ ] Create utils/
+[*] Create utils/
 
-[ ] Add dataset.json
+[*] Add dataset.json
 
-[ ] Add requirements.txt
+[*] Add requirements.txt
 
 📝 PHASE 2 — Frontend Form
 🖥 Form UI
