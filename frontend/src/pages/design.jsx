@@ -47,7 +47,7 @@ function Design() {
                     transformation_guide: "History view: Please check your previous generation for full guide details."
                 },
                 procurement: {
-                    comparison_plans: [] // History doesn't store full plans currently
+                    comparison_plans: hist.procurement_plans || []
                 }
             });
             // Sync temp states
@@ -229,7 +229,9 @@ function Design() {
                 ) : (
                     <div id="results-section" className="results-container">
                         <div className="result-header">
-                            <button className="back-btn" onClick={() => setResult(null)}><ArrowLeft size={18} /> Back</button>
+                            <button className="back-btn" onClick={() => {
+                                navigate("/dashboard");
+                            }}><ArrowLeft size={18} /> Back</button>
                             <h2><Sparkles className="gold-icon" /> Your AI Transformation</h2>
                         </div>
 

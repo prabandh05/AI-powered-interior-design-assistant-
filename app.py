@@ -13,13 +13,36 @@ from models import DesignHistory
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+# Enable CORS with more explicit settings
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+
+# Also ensure JSON encoding handles any weird date objects if they appear
+app.config['JSON_SORT_KEYS'] = False
 
 # Configurations
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'instance', 'users.db')
 DATASET_PATH = os.path.join(BASE_DIR, "dataset", "indian_interior_v2.json")
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "uploads")
+
+# Enumerated Locations for Business Intelligence
+SUPPORTED_LOCATIONS = [
+    "Mumbai, MH",
+    "Delhi, DL",
+    "Bangalore, KA",
+    "Hyderabad, TG",
+    "Chennai, TN",
+    "Kolkata, WB",
+    "Pune, MH",
+    "Jaipur, RJ"
+]
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -52,6 +75,10 @@ def index():
 def serve_image(filename):
     return send_from_directory(os.path.join(BASE_DIR, 'images'), filename)
 
+@app.route('/api/locations', methods=['GET'])
+def get_locations():
+    return jsonify(SUPPORTED_LOCATIONS)
+
 # --- Authentication Routes ---
 
 @app.route('/register', methods=['POST'])
@@ -67,13 +94,19 @@ def register():
         return jsonify({'message': 'Email already exists'}), 400
     
     hashed_password = bcrypt.generate_password_hash(data.get('password')).decode('utf-8')
+    
+    # Validate location against enumeration
+    location = data.get('location', '')
+    if location not in SUPPORTED_LOCATIONS:
+        location = SUPPORTED_LOCATIONS[0] # Default to first valid if not provided or invalid
+
     new_user = User(
         name=data.get('name'),
         username=data.get('username'),
         email=data.get('email'),
         password_hash=hashed_password,
-        location=data.get('location', ''),
-        is_admin=data.get('is_admin', False) # For hackathon convenience
+        location=location,
+        is_admin=data.get('is_admin', False)
     )
     
     db.session.add(new_user)
@@ -160,7 +193,9 @@ def generate_design():
                 budget=int(user_input.get("budget", 0)),
                 total_cost=result["procurement"]["comparison_plans"][0].get("total_cost", 0) if result["procurement"]["comparison_plans"] else 0,
                 selected_plan=result["procurement"]["comparison_plans"][0].get("plan_name", "") if result["procurement"]["comparison_plans"] else "Generic",
-                image_url=result["visuals"]["image_links"][0] if result["visuals"]["image_links"] else ""
+                design_intensity=result["visuals"].get("used_intensity", "moderate"),
+                image_url=result["visuals"]["image_links"][0] if result["visuals"]["image_links"] else "",
+                procurement_plans_json=json.dumps(result["procurement"].get("comparison_plans", []))
             )
             db.session.add(history)
             db.session.commit()
@@ -183,6 +218,7 @@ def get_user_history(current_user_id):
             "total_cost": item.total_cost,
             "selected_plan": item.selected_plan,
             "image_url": item.image_url,
+            "procurement_plans": json.loads(item.procurement_plans_json) if item.procurement_plans_json else [],
             "created_at": item.created_at.strftime("%Y-%m-%d %H:%M")
         })
     return jsonify(output)
@@ -190,24 +226,70 @@ def get_user_history(current_user_id):
 @app.route("/admin/stats", methods=["GET"])
 @token_required
 def get_admin_stats(current_user_id):
-    admin = User.query.get(current_user_id)
+    admin = db.session.get(User, current_user_id)
     if not admin or not admin.is_admin:
         return jsonify({"message": "Forbidden"}), 403
     
+    from sqlalchemy import func, case
+    
     total_users = User.query.count()
     total_designs = DesignHistory.query.count()
+    avg_budget = db.session.query(func.avg(DesignHistory.budget)).scalar() or 0
     
-    # Simple aggregations
-    avg_budget = db.session.query(db.func.avg(DesignHistory.budget)).scalar() or 0
+    # 1. Theme Popularity (Sorted)
+    theme_data = db.session.query(DesignHistory.theme, func.count(DesignHistory.theme))\
+        .group_by(DesignHistory.theme).order_by(func.count(DesignHistory.theme).desc()).all()
+    theme_distribution = [{"name": t[0].replace('_', ' ').title(), "value": t[1]} for t in theme_data]
+
+    # 2. Budget Distribution (Sorted)
+    budget_tiers = db.session.query(
+        case(
+            (DesignHistory.budget < 30000, "Economy"),
+            (DesignHistory.budget < 70000, "Mid-Range"),
+            (DesignHistory.budget < 120000, "Premium"),
+            else_="Luxury"
+        ).label('tier'),
+        func.count(DesignHistory.id)
+    ).group_by('tier').order_by(func.count(DesignHistory.id).desc()).all()
+    budget_distribution = [{"name": b[0], "value": b[1]} for b in budget_tiers]
+
+    # 3. Location Distribution (Sorted)
+    location_data = db.session.query(User.location, func.count(DesignHistory.id))\
+        .join(DesignHistory, User.id == DesignHistory.user_id)\
+        .group_by(User.location).order_by(func.count(DesignHistory.id).desc()).all()
+    location_distribution = [{"name": l[0].split(',')[0] if l[0] else "Other", "value": l[1]} for l in location_data]
+
+    # 4. Multi-Dimensional: Theme vs Space Type (Business Intelligence Matrix)
+    matrix_data = db.session.query(DesignHistory.theme, DesignHistory.space_type, func.count(DesignHistory.id))\
+        .group_by(DesignHistory.theme, DesignHistory.space_type).all()
     
-    from sqlalchemy import func
-    most_common_theme = db.session.query(DesignHistory.theme, func.count(DesignHistory.theme).label('count')).group_by(DesignHistory.theme).order_by(func.count(DesignHistory.theme).desc()).first()
+    # Format for heatmap/grouped bar
+    # { theme: "Traditional", LivingRoom: 5, Bedroom: 3 ... }
+    theme_matrix = {}
+    for theme_raw, space_raw, count in matrix_data:
+        th = theme_raw.replace('_', ' ').title()
+        sp = space_raw.replace('_', ' ').title()
+        if th not in theme_matrix:
+            theme_matrix[th] = {"name": th}
+        theme_matrix[th][sp] = count
     
+    heatmap_data = list(theme_matrix.values())
+
+    # 5. Daily Trend (Last 30 days)
+    trend_data = db.session.query(func.date(DesignHistory.created_at), func.count(DesignHistory.id))\
+        .group_by(func.date(DesignHistory.created_at))\
+        .order_by(func.date(DesignHistory.created_at)).all()
+    trend = [{"date": str(d[0]), "count": d[1]} for d in trend_data]
+
     return jsonify({
         "total_users": total_users,
         "total_designs": total_designs,
         "avg_budget": round(avg_budget, 2),
-        "most_common_theme": most_common_theme[0] if most_common_theme else "N/A"
+        "theme_distribution": theme_distribution,
+        "budget_distribution": budget_distribution,
+        "location_distribution": location_distribution,
+        "heatmap_data": heatmap_data,
+        "trend": trend
     })
 
 @app.route('/protected', methods=['GET'])

@@ -55,9 +55,7 @@ function Home() {
 
                     <button
                         onClick={() => {
-                            const token = localStorage.getItem("token");
-                            if (token) navigate("/dashboard");
-                            else navigate("/auth");
+                            navigate("/auth");
                         }}
                         style={{
                             padding: "16px 45px",

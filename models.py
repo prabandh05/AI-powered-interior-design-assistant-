@@ -26,10 +26,13 @@ class DesignHistory(db.Model):
     space_type = db.Column(db.String(50))
     budget = db.Column(db.Integer)
     total_cost = db.Column(db.Integer)
-    # Storing a simple string for selected plan (e.g., "Silver", "Gold", "Diamond")
+    # Selected procurement plan (e.g., "Luxury", "Moderate", "Minimal")
     selected_plan = db.Column(db.String(100))
+    # Visualization richness/tier (minimal, moderate, luxury)
+    design_intensity = db.Column(db.String(50))
     # Path to the generated image if saved locally
     image_url = db.Column(db.String(255))
+    procurement_plans_json = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):

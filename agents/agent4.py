@@ -83,10 +83,6 @@ class Agent4ProcurementEngine:
                 cost += cheapest["price"]
         return cost
 
-    # --------------------------------------------------
-    # BUILD PLAN (PRIORITY AWARE)
-    # --------------------------------------------------
-
     def build_plan(
         self,
         theme: str,
@@ -95,13 +91,14 @@ class Agent4ProcurementEngine:
         target_budget: int,
         tier_order: List[str]
     ):
-
         # 🔥 Sort by priority
         required_items = sorted(required_items, key=lambda x: x["priority"])
         required_item_types = [item["item_type"] for item in required_items]
 
         plan_items = []
         total_cost = 0
+
+        print(f"[AGENT4] Building {target_budget} plan for {theme} in {space_type}")
 
         for idx, item_type in enumerate(required_item_types):
             remaining_item_types = required_item_types[idx + 1:]
@@ -111,34 +108,49 @@ class Agent4ProcurementEngine:
 
             selected_item = None
 
+            # Estimate cost of remaining items (conservatively)
             min_remaining_cost = self.estimate_min_remaining_cost(
                 theme, space_type, remaining_item_types
             )
 
+            # Try to pick best fit based on tier order
             for tier in tier_order:
-                candidate = self.select_cheapest(buckets[tier])
+                # Fallback: if tier is empty, check next tier in buckets
+                tier_items = buckets.get(tier, [])
+                if not tier_items:
+                    continue
+                    
+                candidate = self.select_cheapest(tier_items)
                 if candidate:
-                    projected_cost = (
-                        total_cost + candidate["price"] + min_remaining_cost
-                    )
+                    projected_cost = total_cost + candidate["price"] + min_remaining_cost
                     if projected_cost <= target_budget:
                         selected_item = candidate
                         break
+            
+            # If no item found in preferred tiers that fits budget, try ANY tier
+            if not selected_item:
+                all_candidates = sorted(candidates, key=lambda x: x["price"])
+                for cand in all_candidates:
+                    if total_cost + cand["price"] + min_remaining_cost <= target_budget:
+                        selected_item = cand
+                        break
 
             if not selected_item:
+                # Final fallback: DIY (Price 0)
                 diy = self.get_diy_items(theme, item_type)
                 plan_items.append({
-                    "item_type": item_type,
-                    "selection": "DIY",
+                    "item_type": item_type.replace("_", " ").title(),
+                    "selection": "Custom DIY Solution",
                     "price": 0,
-                    "link": diy[0]["diy_link"] if diy else None
+                    "quality_level": "DIY",
+                    "link": diy[0]["diy_link"] if diy else "https://www.youtube.com/results?search_query=diy+"+item_type
                 })
                 continue
 
             total_cost += selected_item["price"]
 
             plan_items.append({
-                "item_type": item_type,
+                "item_type": item_type.replace("_", " ").title(),
                 "selection": selected_item["name"],
                 "price": selected_item["price"],
                 "quality_level": selected_item["quality_level"],
@@ -147,7 +159,7 @@ class Agent4ProcurementEngine:
 
         return {
             "total_cost": total_cost,
-            "savings": target_budget - total_cost,
+            "savings": max(0, target_budget - total_cost),
             "items": plan_items
         }
 
@@ -177,9 +189,11 @@ class Agent4ProcurementEngine:
 
         plans = []
 
-        for i, (budget, tiers) in enumerate(zip(budget_targets, tier_preferences), 1):
+        plan_names = ["Luxury", "Moderate", "Minimal"]
+
+        for i, (budget, tiers) in enumerate(zip(budget_targets, tier_preferences)):
             plan = self.build_plan(theme, space_type, required_items, budget, tiers)
-            plan["plan_name"] = f"Plan {i}"
+            plan["plan_name"] = plan_names[i]
             plan["budget_limit"] = budget
             plans.append(plan)
 

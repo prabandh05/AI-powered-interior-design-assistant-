@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { User, Lock, Mail, MapPin, Loader2, Sparkles, ArrowRight } from "lucide-react";
@@ -21,6 +21,23 @@ function Auth() {
         password: "",
         location: ""
     });
+
+    const [locations, setLocations] = useState([]);
+
+    useEffect(() => {
+        const fetchLocations = async () => {
+            try {
+                const res = await axios.get(`${API_BASE_URL}/api/locations`);
+                setLocations(res.data);
+                if (res.data.length > 0) {
+                    setFormData(prev => ({ ...prev, location: res.data[0] }));
+                }
+            } catch (err) {
+                console.error("Failed to fetch locations");
+            }
+        };
+        fetchLocations();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -95,8 +112,18 @@ function Auth() {
                         </div>
                         {!isLogin && (
                             <div className="form-group">
-                                <label><MapPin size={16} className="inline-icon" /> Location (Optional)</label>
-                                <input name="location" type="text" placeholder="Mumbai, MH" onChange={handleChange} />
+                                <label><MapPin size={16} className="inline-icon" /> Catchment Location</label>
+                                <select
+                                    name="location"
+                                    className="design-input"
+                                    style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid #444', height: '50px', borderRadius: '10px', padding: '0 15px', width: '100%' }}
+                                    onChange={handleChange}
+                                    value={formData.location}
+                                >
+                                    {locations.map(loc => (
+                                        <option key={loc} value={loc} style={{ background: '#111', color: '#fff' }}>{loc}</option>
+                                    ))}
+                                </select>
                             </div>
                         )}
 
