@@ -1,27 +1,24 @@
-<p align="center">
-  <img src="frontend/public/favicon.png" width="100" alt="Gruha Assistant Logo">
-</p>
 
-# Gruha Assistant: Agentic AI Interior Design 🏠✨
+# Gruha Assistant: Agentic AI Interior Design 
 
 Gruha Assistant is a state-of-the-art **Agentic AI Interior Design System** designed to transform Indian homes through intelligence, precision, and aesthetic excellence. Leveraging the power of Google's **Gemini 2.5 Flash** and advanced image generation models, it provides a seamless end-to-end design experience—from initial concept to a fully cost-optimized procurement plan.
 
 ---
 
-## 🧠 Why 4 Agents? The Architecture of Choice
+##  Why 4 Agents? The Architecture of Choice
 
 Unlike simple prompt-to-image tools, Gruha Assistant utilizes a **Multi-Agent Orchestration Architecture**. Modern interior design is complex; it requires understanding spatial constraints, thematic consistency, visual inspiration, and financial feasibility. One LLM call cannot handle all these dimensions reliably. 
 
 Our system splits the workload into specialized expert agents:
 
-### 1. 🏗️ Agent 1: Scene Structuring Expert
+### 1.  Agent 1: Scene Structuring Expert
 **The Goal:** Transform raw, noisy user input into a machine-readable spatial map.  
 **Responsibilities:** 
 - Analyzes natural language (e.g., "Make my bedroom look like a Rajasthani palace") and uploaded images.
 - Normalizes data: identifies space type, detected furniture, and intended budget.
 - Outputs a consistent JSON structure that the rest of the pipeline depends on.
 
-### 2. 🎨 Agent 2: Design Strategist
+### 2.  Agent 2: Design Strategist
 **The Goal:** Plan the aesthetic and functional blueprint.  
 **Responsibilities:** 
 - Interprets the structured scene to determine a precise interior design strategy.
