@@ -47,9 +47,12 @@ function Dashboard() {
 
             <div className="content-wrapper" style={{ maxWidth: '1600px', width: '95%' }}>
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '20px', width: '100%' }}>
-                    <div>
-                        <h1 className="design-title" style={{ textAlign: 'left', marginBottom: '5px' }}>Namaste, {userName}!</h1>
-                        <p style={{ color: '#aaa' }}>Your Personal Interior Design Dashboard</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                        <img src="/favicon.png" alt="Gruha Logo" style={{ width: "40px", height: "40px" }} />
+                        <div>
+                            <h1 className="design-title" style={{ textAlign: 'left', marginBottom: '5px' }}>Namaste, {userName}!</h1>
+                            <p style={{ color: '#aaa' }}>Your Personal Interior Design Dashboard</p>
+                        </div>
                     </div>
                     <div style={{ display: 'flex', gap: '15px' }}>
                         <Link to="/design" className="generate-btn" style={{ padding: '10px 25px', borderRadius: '30px', textDecoration: 'none', fontSize: '0.9rem', width: 'auto' }}>

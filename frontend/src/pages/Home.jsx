@@ -45,6 +45,10 @@ function Home() {
                 />
 
                 <div style={{ position: "relative", zIndex: 2 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "30px" }}>
+                        <img src="/favicon.png" alt="Gruha Logo" style={{ width: "50px", height: "50px" }} />
+                        <span style={{ fontSize: "24px", fontWeight: "800", letterSpacing: "2px", color: "gold" }}>GRUHA</span>
+                    </div>
                     <h1 style={{ fontSize: "48px", marginBottom: "20px" }}>
                         Agentic AI Interior Design
                     </h1>

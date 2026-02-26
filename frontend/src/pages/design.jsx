@@ -232,7 +232,10 @@ function Design() {
                             <button className="back-btn" onClick={() => {
                                 navigate("/dashboard");
                             }}><ArrowLeft size={18} /> Back</button>
-                            <h2><Sparkles className="gold-icon" /> Your AI Transformation</h2>
+                            <h2>
+                                <img src="/favicon.png" alt="Gruha Logo" style={{ width: "35px", height: "35px", marginRight: "10px" }} />
+                                <Sparkles className="gold-icon" /> Your AI Transformation
+                            </h2>
                         </div>
 
                         {/* Top: Visualization & Analysis Side-by-Side */}

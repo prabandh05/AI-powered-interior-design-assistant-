@@ -78,11 +78,11 @@ function Auth() {
             <div className="content-wrapper" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
                 <div className="design-card auth-card" style={{ maxWidth: '480px', width: '95%', margin: '40px auto', padding: '60px 40px' }}>
                     <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-                        <div style={{ display: 'inline-flex', padding: '20px', borderRadius: '50%', background: 'rgba(212, 175, 55, 0.1)', marginBottom: '20px' }}>
-                            <Sparkles size={40} color="#d4af37" />
+                        <div style={{ display: 'inline-flex', padding: '10px', borderRadius: '50%', background: 'rgba(212, 175, 55, 0.1)', marginBottom: '15px' }}>
+                            <img src="/favicon.png" alt="Gruha Logo" style={{ width: "40px", height: "40px" }} />
                         </div>
                         <h2 className="design-title" style={{ fontSize: '2.5rem', marginBottom: '10px' }}>
-                            {isLogin ? "Welcome Back" : "Create Account"}
+                            {isLogin ? "Gruha Assistant" : "Create Account"}
                         </h2>
                         <p style={{ color: '#888', fontSize: '1rem', fontWeight: '500' }}>
                             {isLogin ? "Your AI-powered interior awaits." : "Join the revolution of agentic design."}

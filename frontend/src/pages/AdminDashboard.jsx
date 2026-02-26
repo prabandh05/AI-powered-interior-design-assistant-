@@ -72,8 +72,8 @@ function AdminDashboard() {
             <div className="content-wrapper" style={{ maxWidth: '1400px', width: '95%' }}>
                 <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', paddingTop: '20px', width: '100%' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                        <div style={{ padding: '15px', borderRadius: '15px', background: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                            <ShieldCheck size={32} color="#d4af37" />
+                        <div style={{ padding: '10px', borderRadius: '15px', background: 'rgba(212, 175, 55, 0.1)', border: '1px solid rgba(212, 175, 55, 0.2)' }}>
+                            <img src="/favicon.png" alt="Gruha Logo" style={{ width: "45px", height: "45px" }} />
                         </div>
                         <div>
                             <h1 className="design-title" style={{ textAlign: 'left', marginBottom: '5px', fontSize: '2.5rem', textShadow: '0 4px 10px rgba(0,0,0,0.5)' }}>Strategy Intelligence</h1>
