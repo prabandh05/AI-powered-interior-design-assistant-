@@ -54,7 +54,11 @@ function Home() {
                     </p>
 
                     <button
-                        onClick={() => navigate("/design")}
+                        onClick={() => {
+                            const token = localStorage.getItem("token");
+                            if (token) navigate("/dashboard");
+                            else navigate("/auth");
+                        }}
                         style={{
                             padding: "16px 45px",
                             fontSize: "18px",
@@ -62,6 +66,8 @@ function Home() {
                             border: "none",
                             background: "gold",
                             cursor: "pointer",
+                            fontWeight: "bold",
+                            transition: "0.3s"
                         }}
                     >
                         Get Started

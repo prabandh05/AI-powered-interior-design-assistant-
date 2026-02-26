@@ -38,5 +38,5 @@ def generate_response(prompt: str, model_name: str = "gemini-2.5-flash", image_p
         return response.text
         
     except Exception as e:
-        print(f"Error generating response from Gemini: {e}")
+        print(f"[GEMINI] Critical Error: {e}")
         return ""

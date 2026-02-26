@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Loader2, Sparkles, ShoppingBag, Palette, Layout, ChevronRight, CheckCircle2, RefreshCw, ArrowLeft } from "lucide-react";
 import bg from "../assets/bg.jpg";
@@ -16,9 +17,47 @@ function Design() {
     const [error, setError] = useState(null);
     const [upPreview, setUpPreview] = useState(null);
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
     // Iteration States
     const [tempTheme, setTempTheme] = useState("");
     const [tempBudget, setTempBudget] = useState("");
+
+    // Load from history if coming from dashboard
+    useEffect(() => {
+        if (location.state?.previousResult) {
+            const hist = location.state.previousResult;
+            // Map history item back to result format
+            setResult({
+                status: "success",
+                scene_analysis: {
+                    theme: hist.theme,
+                    space_type: hist.space_type,
+                    budget: hist.budget,
+                    detected_elements: [] // History only stores basics, but enough to show
+                },
+                design_strategy: {
+                    summary: "Retrieved from your history",
+                    space_type: hist.space_type,
+                    theme: hist.theme
+                },
+                visuals: {
+                    image_links: [hist.image_url],
+                    transformation_guide: "History view: Please check your previous generation for full guide details."
+                },
+                procurement: {
+                    comparison_plans: [] // History doesn't store full plans currently
+                }
+            });
+            // Sync temp states
+            setTempTheme(hist.theme);
+            const b = hist.budget;
+            if (b <= 30000) setTempBudget("25000");
+            else if (b <= 70000) setTempBudget("60000");
+            else setTempBudget("100000");
+        }
+    }, [location.state]);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -50,6 +89,9 @@ function Design() {
 
         try {
             let response;
+            const token = localStorage.getItem("token");
+            const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
             if (!isIteration && image) {
                 // Initial run with image: use FormData
                 const formData = new FormData();
@@ -59,7 +101,7 @@ function Design() {
                 formData.append("image", image);
 
                 response = await axios.post(`${API_BASE_URL}/generate-design`, formData, {
-                    headers: { 'Content-Type': 'multipart/form-data' }
+                    headers: { ...headers, 'Content-Type': 'multipart/form-data' }
                 });
             } else {
                 // Iteration or run without image: use JSON
@@ -71,17 +113,19 @@ function Design() {
                 if (isIteration && result) {
                     payload["previous_scene_data"] = result.scene_analysis;
                 }
-                response = await axios.post(`${API_BASE_URL}/generate-design`, payload);
+                response = await axios.post(`${API_BASE_URL}/generate-design`, payload, { headers });
             }
+            console.log("Design Generation Result:", response.data);
             setResult(response.data);
 
             // Sync temp states
-            setTempTheme(response.data.scene_analysis.theme);
-            // Find level for budget
-            const b = response.data.scene_analysis.budget;
-            if (b <= 30000) setTempBudget("25000");
-            else if (b <= 70000) setTempBudget("60000");
-            else setTempBudget("100000");
+            if (response.data?.scene_analysis) {
+                setTempTheme(response.data.scene_analysis.theme || "");
+                const b = response.data.scene_analysis.budget;
+                if (b <= 30000) setTempBudget("25000");
+                else if (b <= 70000) setTempBudget("60000");
+                else setTempBudget("100000");
+            }
 
             // Scroll to results
             setTimeout(() => {
@@ -89,8 +133,8 @@ function Design() {
             }, 100);
 
         } catch (err) {
-            console.error(err);
-            setError("Failed to generate design. Please try again.");
+            console.error("Design Generation Error:", err);
+            setError(err.response?.data?.message || "Failed to generate design. Our AI service might be busy. Please check your API keys.");
         } finally {
             setLoading(false);
         }
@@ -109,7 +153,12 @@ function Design() {
             <div className="content-wrapper">
                 {!result ? (
                     <div className="design-card">
-                        <h1 className="design-title">Design Your Space</h1>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                            <h1 className="design-title" style={{ margin: 0 }}>Design Your Space</h1>
+                            <button onClick={() => navigate("/dashboard")} className="back-btn" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #444' }}>
+                                Dashboard
+                            </button>
+                        </div>
 
                         <div className="form-group">
                             <label><Layout className="inline-icon" size={18} /> 1. Describe Your Interior</label>

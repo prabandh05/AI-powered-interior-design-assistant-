@@ -42,6 +42,8 @@ class InteriorDesignPipeline:
         # --- PHASE 3: Visualization (Agent 3) ---
         print("[PIPELINE] Calling Agent 3 (Visualizer & Guide)...")
         visual_output = self.agent3.run(scene_data, design_plan)
+        print(f"[PIPELINE] Agent 3 Guide Length: {len(visual_output.get('guide', ''))}")
+        print(f"[PIPELINE] Agent 3 Image Links: {visual_output.get('image_links')}")
 
         # --- PHASE 4: Procurement (Agent 4) ---
         print("[PIPELINE] Calling Agent 4 (Procurement Engine)...")
@@ -51,6 +53,7 @@ class InteriorDesignPipeline:
             required_items=design_plan.get("required_items", []),
             user_budget=scene_data.get("budget", 30000)
         )
+        print(f"[PIPELINE] Agent 4 Plans Generated: {len(procurement_plans)}")
 
         return {
             "status": "success",

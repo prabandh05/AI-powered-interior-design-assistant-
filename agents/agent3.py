@@ -31,9 +31,9 @@ class VisualizationAgent:
         except:
             budget = 30000
 
-        if budget < 25000:
+        if budget <= 25000:
             return "minimal"
-        elif budget < 60000:
+        elif budget <= 60000:
             return "moderate"
         else:
             return "luxury"
@@ -179,6 +179,8 @@ Realistic materials and textures.
         budget = agent1_output.get("budget", 30000)
         items = agent2_output.get("required_items", [])
         space = agent1_output.get("space_type", "room")
+        
+        print(f"[AGENT3] Generating execution guide for {theme} {space}...")
 
         prompt = f"""
 You are a Professional Interior Architect.
@@ -199,7 +201,21 @@ Avoid excessive fluff.
 No markdown.
 """
 
-        return generate_response(prompt)
+        guide = generate_response(prompt)
+        
+        if not guide or len(guide) < 20:
+            print("[AGENT3] Gemini guide generation failed. Using fallback.")
+            guide = f"""
+1. Concept: Thematic {theme.title()} Transformation
+Prepare your {space} by clearing unnecessary clutter. Focus on integrating warm lighting that highlights the {theme} textures.
+
+2. Execution Steps:
+- Apply a fresh coat of paint or wall panels in line with the {theme} palette.
+- Introduce key furniture pieces like a {items[0]['item_type'] if items else 'thematic center piece'}.
+- Add layers of textiles (curtains, carpets) to bring in the rich {theme} feel.
+- Complete the look with accent decor and lighting fixtures as planned.
+"""
+        return guide
 
     # --------------------------------------------------
     # Main Runner
