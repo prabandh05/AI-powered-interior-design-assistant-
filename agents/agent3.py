@@ -141,12 +141,20 @@ Realistic materials and textures.
         prompt = self._build_prompt(agent1_output, agent2_output)
         intensity = self._get_design_intensity(agent1_output.get("budget"))
 
-        print(f"\n--- Generating Image | Budget Tier: {intensity.upper()} ---")
+        print(f"\n--- [AGENT3] Attempting Image Generation | Tier: {intensity.upper()} ---")
+        print(f"[AGENT3] Prompt: {prompt[:100]}...")
         
         try:
+            print("[AGENT3] Calling Bytez SDK model.run()...")
+            # The Bytez SDK call - wrapping in try/except specifically
             results = self.model.run(prompt)
+            print("[AGENT3] Bytez SDK call completed.")
             
-            if results.error:
+            if not results:
+                print("[AGENT3] Error: Bytez returned None results")
+                return {"error": "No result from Bytez", "image": None, "used_intensity": intensity}
+
+            if hasattr(results, 'error') and results.error:
                 print(f"[AGENT3] Bytez Error: {results.error}")
                 return {
                     "error": str(results.error),
@@ -154,14 +162,15 @@ Realistic materials and textures.
                     "used_intensity": intensity
                 }
             
-            print(f"[AGENT3] Bytez returned: {results.output}")
+            output = getattr(results, 'output', None)
+            print(f"[AGENT3] Bytez returned output: {output}")
             return {
                 "error": None,
-                "image": results.output,
+                "image": output,
                 "used_intensity": intensity
             }
         except Exception as e:
-            print(f"Agent 3 Image Generation Error: {e}")
+            print(f"[AGENT3] Image Generation Exception: {e}")
             return {
                 "error": str(e),
                 "image": None,

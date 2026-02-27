@@ -28,7 +28,10 @@ class InteriorDesignPipeline:
             if "theme" in user_input:
                 scene_data["theme"] = user_input["theme"]
             if "budget" in user_input:
-                scene_data["budget"] = user_input["budget"]
+                try:
+                    scene_data["budget"] = int(user_input["budget"])
+                except:
+                    pass
         else:
             # INITIAL MODE: Run Agent 1
             print("\n[PIPELINE] Initial Run. Calling Agent 1...")
@@ -48,11 +51,18 @@ class InteriorDesignPipeline:
         # --- PHASE 4: Procurement (Agent 4) ---
         print("[PIPELINE] Calling Agent 4 (Procurement Engine)...")
         try:
+            # Ensure budget is an integer
+            raw_budget = scene_data.get("budget", 30000)
+            try:
+                processed_budget = int(raw_budget)
+            except:
+                processed_budget = 30000
+
             procurement_plans = self.agent4.generate_comparison_plans(
                 theme=scene_data.get("theme"),
                 space_type=scene_data.get("space_type"),
                 required_items=design_plan.get("required_items", []),
-                user_budget=scene_data.get("budget", 30000)
+                user_budget=processed_budget
             )
             # Ensure we always have 3 plans
             if len(procurement_plans) < 3:

@@ -1,37 +1,14 @@
-import jwt
-import datetime
-from flask import request, jsonify
-from functools import wraps
 import os
+from functools import wraps
+from flask import request, jsonify
+from supabase import create_client, Client
 from dotenv import load_dotenv
 
-load_dotenv() # Load environment variables from .env
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'default-secret-key-for-dev')
-
-def encode_token(user_id):
-    try:
-        payload = {
-            'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1),
-            'iat': datetime.datetime.now(datetime.timezone.utc),
-            'sub': str(user_id)
-        }
-        return jwt.encode(
-            payload,
-            SECRET_KEY,
-            algorithm='HS256'
-        )
-    except Exception as e:
-        return str(e)
-
-def decode_token(token):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-        return int(payload['sub'])
-    except jwt.ExpiredSignatureError:
-        return 'Signature expired. Please log in again.'
-    except jwt.InvalidTokenError:
-        return 'Invalid token. Please log in again.'
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
+SUPABASE_KEY = os.environ.get("SUPABASE_ANON_KEY")
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def token_required(f):
     @wraps(f)
@@ -45,10 +22,31 @@ def token_required(f):
         if not token:
             return jsonify({'message': 'Token is missing!'}), 401
         
-        user_id_or_msg = decode_token(token)
-        if isinstance(user_id_or_msg, str):
-             return jsonify({'message': user_id_or_msg}), 401
+        try:
+            # Verify the token with Supabase and get user
+            res = supabase.auth.get_user(token)
+            if not res.user:
+                return jsonify({'message': 'Invalid token. Please log in again.'}), 401
+            
+            # Extract user_id from the response
+            current_user_id = res.user.id
+            
+        except Exception as e:
+            return jsonify({'message': f'Invalid token: {str(e)}'}), 401
         
-        return f(user_id_or_msg, *args, **kwargs)
+        return f(current_user_id, *args, **kwargs)
     
     return decorated
+
+# These are no longer needed for Supabase as it handles encoding/decoding
+def encode_token(user_id):
+    pass
+
+def decode_token(token):
+    try:
+        res = supabase.auth.get_user(token)
+        if res.user:
+            return res.user.id
+        return 'Invalid token.'
+    except:
+        return 'Invalid token.'

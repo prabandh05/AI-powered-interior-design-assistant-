@@ -203,6 +203,26 @@ User Input:
     # -----------------------------
 
     def _fallback_response(self, user_input: Dict[str, Any]) -> Dict[str, Any]:
+        description = user_input.get("description_text", "").lower()
+        
+        # Keyword-based space type detection
+        space_type = "living_room"
+        if any(w in description for w in ["study", "office", "work", "desk"]):
+            space_type = "study_room"
+        elif any(w in description for w in ["bedroom", "sleep", "bed"]):
+            space_type = "bedroom"
+        elif any(w in description for w in ["kitchen", "cook", "food"]):
+            space_type = "kitchen"
+
+        # Keyword-based element detection
+        elements = []
+        element_keywords = {
+            "desk": "desk", "table": "table", "chair": "chair", "sofa": "sofa",
+            "tv": "television", "monitor": "monitor", "bed": "bed", "shelf": "shelf"
+        }
+        for kw, val in element_keywords.items():
+            if kw in description:
+                elements.append(val)
 
         try:
             budget = int(user_input.get("budget", self.DEFAULT_BUDGET))
@@ -211,18 +231,23 @@ User Input:
 
         theme = user_input.get("preferred_theme", "traditional_indian")
         if theme not in self.ALLOWED_THEMES:
-            theme = "traditional_indian"
+            # Try to map simple names
+            if "traditional" in theme.lower(): theme = "traditional_indian"
+            elif "contemporary" in theme.lower(): theme = "contemporary_indian"
+            elif "rustic" in theme.lower(): theme = "rustic_indian"
+            elif "mughal" in theme.lower() or "rajasthan" in theme.lower(): theme = "rajasthani_mughal"
+            else: theme = "traditional_indian"
 
         return {
-            "space_type": "living_room",
-            "detected_elements": [],
+            "space_type": space_type,
+            "detected_elements": list(set(elements)),
             "theme": theme,
             "budget": budget,
             "image_analysis": {
-                "description": "No image provided or analysis failed.",
-                "detected_elements": [],
-                "dominant_colors": [],
-                "style_type": "none"
+                "description": "Rule-based fallback analysis (No API Key).",
+                "detected_elements": list(set(elements)),
+                "dominant_colors": ["warm beige", "wooden brown"],
+                "style_type": "current_state"
             }
         }
 

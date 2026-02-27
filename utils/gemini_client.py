@@ -3,7 +3,8 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 # Configure Gemini API
 api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
@@ -15,7 +16,7 @@ genai.configure(api_key=api_key)
 
 from PIL import Image
 
-def generate_response(prompt: str, model_name: str = "gemini-2.5-flash", image_path: str = None) -> str:
+def generate_response(prompt: str, model_name: str = "gemini-1.5-flash", image_path: str = None) -> str:
     """
     Helper function to generate a response from the Gemini model.
     """

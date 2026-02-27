@@ -277,18 +277,46 @@ Scene Data:
     # -----------------------------
 
     def _fallback_response(self, scene_data: Dict[str, Any]) -> Dict[str, Any]:
+        space_type = scene_data.get("space_type", "living_room")
+        theme = scene_data.get("theme", "traditional_indian")
+        
+        # Predefined recommendations for each space type
+        space_recommendations = {
+            "study_room": [
+                {"item_type": "study_table", "category": "furniture", "priority": 1, "placement": "Center/Wall", "reason": "Primary workstation"},
+                {"item_type": "ergonomic_chair", "category": "furniture", "priority": 2, "placement": "Desk", "reason": "Comfortable seating"},
+                {"item_type": "ceiling_light", "category": "lighting", "priority": 3, "placement": "Ceiling", "reason": "Ambient lighting"}
+            ],
+            "living_room": [
+                {"item_type": "accent_wall_paint", "category": "wall_treatment", "priority": 1, "placement": "Main Wall", "reason": "Visual focus"},
+                {"item_type": "curtains", "category": "textile", "priority": 2, "placement": "Windows", "reason": "Light control and style"},
+                {"item_type": "carpet", "category": "textile", "priority": 3, "placement": "Floor", "reason": "Comfort and textures"}
+            ],
+            "bedroom": [
+                {"item_type": "curtains", "category": "textile", "priority": 1, "placement": "Windows", "reason": "Privacy and darkness"},
+                {"item_type": "wall_art", "category": "decor", "priority": 2, "placement": "Above Bed", "reason": "Personal aesthetic"},
+                {"item_type": "floor_lamp", "category": "lighting", "priority": 3, "placement": "Corner", "reason": "Cozy lighting"}
+            ],
+            "kitchen": [
+                {"item_type": "storage_unit", "category": "storage", "priority": 1, "placement": "Wall", "reason": "Organization"},
+                {"item_type": "ceiling_light", "category": "lighting", "priority": 2, "placement": "Ceiling", "reason": "Visibility for cooking"}
+            ]
+        }
+
+        # Select items based on space_type, default to living_room if not found
+        recommended_items = space_recommendations.get(space_type, space_recommendations["living_room"])
 
         return {
-            "design_summary": "A culturally aligned enhancement plan based on the selected theme.",
-            "space_type": scene_data.get("space_type", "living_room"),
-            "theme": scene_data.get("theme", "traditional_indian"),
-            "required_items": [],
+            "design_summary": f"A culturally aligned {theme} enhancement plan for your {space_type}.",
+            "space_type": space_type,
+            "theme": theme,
+            "required_items": recommended_items,
             "visualization": {
-                "style_keywords": [],
-                "color_palette": [],
-                "material_focus": [],
-                "lighting_style": "",
-                "visual_prompt": ""
+                "style_keywords": [theme, "organized", "aesthetic"],
+                "color_palette": ["warm tones", "earthy base"],
+                "material_focus": ["wood", "textiles"],
+                "lighting_style": "Soft ambient",
+                "visual_prompt": f"A beautiful {theme} {space_type} with focused improvements."
             }
         }
 
