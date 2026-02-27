@@ -1,0 +1,34 @@
+============================================================
+           GRUHA ASSISTANT - DATABASE SCHEMA
+============================================================
+[ TABLE: USER ]
+------------------------------------------------------------
+Column Name          | Type            | Nullable   | PK
+------------------------------------------------------------
+id                   | INTEGER         | No         | Yes
+name                 | VARCHAR(100)    | No         |
+username             | VARCHAR(80)     | No         |
+email                | VARCHAR(120)    | No         |
+password_hash        | VARCHAR(128)    | No         |
+location             | VARCHAR(100)    | Yes        |
+is_admin             | BOOLEAN         | Yes        |
+created_at           | DATETIME        | Yes        |
+------------------------------------------------------------
+[ TABLE: DESIGN_HISTORY ]
+------------------------------------------------------------
+Column Name          | Type            | Nullable   | PK
+------------------------------------------------------------
+id                   | INTEGER         | No         | Yes
+user_id              | INTEGER         | No         |
+theme                | VARCHAR(50)     | Yes        |
+space_type           | VARCHAR(50)     | Yes        |
+budget               | INTEGER         | Yes        |
+total_cost           | INTEGER         | Yes        |
+selected_plan        | VARCHAR(100)    | Yes        |
+design_intensity     | VARCHAR(50)     | Yes        |
+image_url            | VARCHAR(255)    | Yes        |
+created_at           | DATETIME        | Yes        |
+procurement_plans_json | TEXT            | Yes        |
+Foreign Keys:
+  - user_id -> user(id)
+------------------------------------------------------------

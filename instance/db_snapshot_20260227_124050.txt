@@ -1,0 +1,97 @@
+
+================================================================================
+           GRUHA ASSISTANT - REAL-TIME DATABASE EXPLORER
+================================================================================
+
+>>> [ TABLE: USER ]
+   id | name                 | username   | email                | password_hash   | location      |   is_admin | created_at
+------+----------------------+------------+----------------------+-----------------+---------------+------------+----------------------
+    1 | Platform Admin       | admin      | admin@gruha.com      | ********        | Bangalore, KA |          1 | 2026-02-26 20:05:...
+    2 | User 1               | user1      | user1@example.com    | ********        | Jaipur, RJ    |          0 | 2026-02-26 20:05:...
+    3 | User 2               | user2      | user2@example.com    | ********        | Chennai, TN   |          0 | 2026-02-26 20:05:...
+    4 | User 3               | user3      | user3@example.com    | ********        | Kolkata, WB   |          0 | 2026-02-26 20:05:...
+    5 | User 4               | user4      | user4@example.com    | ********        | Hyderabad, TG |          0 | 2026-02-26 20:05:...
+    6 | User 5               | user5      | user5@example.com    | ********        | Hyderabad, TG |          0 | 2026-02-26 20:05:...
+    7 | User 6               | user6      | user6@example.com    | ********        | Jaipur, RJ    |          0 | 2026-02-26 20:05:...
+    8 | User 7               | user7      | user7@example.com    | ********        | Delhi, DL     |          0 | 2026-02-26 20:05:...
+    9 | User 8               | user8      | user8@example.com    | ********        | Delhi, DL     |          0 | 2026-02-26 20:05:...
+   10 | User 9               | user9      | user9@example.com    | ********        | Chennai, TN   |          0 | 2026-02-26 20:05:...
+   11 | User 10              | user10     | user10@example.com   | ********        | Jaipur, RJ    |          0 | 2026-02-26 20:05:...
+   12 | Prabandh Chandrak... | prabandh   | prabandhnaik4305@... | ********        | Bangalore, KA |          0 | 2026-02-26 20:28:...
+   13 | sadhik               | Sad        | sadhikshaik051224... | ********        | Hyderabad, TG |          0 | 2026-02-27 05:52:...
+
+Showing 13 of 13 records
+--------------------------------------------------------------------------------
+
+>>> [ TABLE: DESIGN_HISTORY ]
+   id |   user_id | theme               | space_type   |   budget |   total_cost | selected_plan   | design_intensity   | image_url            | created_at           | procurement_plans_json
+------+-----------+---------------------+--------------+----------+--------------+-----------------+--------------------+----------------------+----------------------+--------------------------
+    1 |         7 | rustic_indian       | study_room   |   100000 |        37082 | Luxury          | luxury             | http://127.0.0.1:... | 2026-01-28 01:05:... |
+    2 |         5 | contemporary_indian | bedroom      |    60000 |        29143 | Moderate        | moderate           | http://127.0.0.1:... | 2026-01-28 06:05:... |
+    3 |         7 | contemporary_indian | living_room  |   150000 |        35531 | Moderate        | luxury             | http://127.0.0.1:... | 2026-01-29 04:05:... |
+    4 |         6 | rustic_indian       | kitchen      |    25000 |        34857 | Moderate        | minimal            | http://127.0.0.1:... | 2026-01-29 00:05:... |
+    5 |         9 | traditional_indian  | living_room  |    60000 |        90481 | Luxury          | moderate           | http://127.0.0.1:... | 2026-01-30 15:05:... |
+    6 |        11 | traditional_indian  | kitchen      |    25000 |        34827 | Minimal         | minimal            | http://127.0.0.1:... | 2026-01-30 12:05:... |
+    7 |         3 | contemporary_indian | kitchen      |    60000 |        35646 | Moderate        | moderate           | http://127.0.0.1:... | 2026-01-31 13:05:... |
+    8 |         3 | traditional_indian  | kitchen      |   100000 |       120200 | Luxury          | luxury             | http://127.0.0.1:... | 2026-01-30 23:05:... |
+    9 |         7 | rustic_indian       | kitchen      |   150000 |        67552 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-01 01:05:... |
+   10 |        11 | traditional_indian  | kitchen      |   150000 |       135774 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-01 03:05:... |
+   11 |        11 | rajasthani_mughal   | kitchen      |   100000 |        86946 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-02 08:05:... |
+   12 |         9 | rajasthani_mughal   | kitchen      |   100000 |       101813 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-02 03:05:... |
+   13 |        11 | traditional_indian  | bedroom      |    60000 |        92817 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-03 15:05:... |
+   14 |         6 | rajasthani_mughal   | study_room   |   150000 |        63743 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-03 03:05:... |
+   15 |         5 | contemporary_indian | bedroom      |   150000 |       116406 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-04 18:05:... |
+   16 |         5 | rajasthani_mughal   | study_room   |    60000 |        90093 | Luxury          | moderate           | http://127.0.0.1:... | 2026-02-04 13:05:... |
+   17 |         8 | traditional_indian  | study_room   |    60000 |        99517 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-05 01:05:... |
+   18 |         5 | contemporary_indian | living_room  |   100000 |        21076 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-05 09:05:... |
+   19 |         3 | contemporary_indian | living_room  |   100000 |       107677 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-06 03:05:... |
+   20 |         8 | rustic_indian       | study_room   |    60000 |       118245 | Moderate        | moderate           | http://127.0.0.1:... | 2026-02-06 19:05:... |
+   21 |         9 | rajasthani_mughal   | bedroom      |    60000 |       128210 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-07 03:05:... |
+   22 |         4 | traditional_indian  | study_room   |   150000 |        69203 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-07 02:05:... |
+   23 |        10 | rajasthani_mughal   | living_room  |   100000 |       134914 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-07 22:05:... |
+   24 |        11 | traditional_indian  | kitchen      |   100000 |       114674 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-08 08:05:... |
+   25 |         5 | rustic_indian       | bedroom      |   100000 |        87298 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-09 10:05:... |
+   26 |        11 | traditional_indian  | kitchen      |    25000 |       108486 | Minimal         | minimal            | http://127.0.0.1:... | 2026-02-09 07:05:... |
+   27 |         2 | rajasthani_mughal   | kitchen      |   150000 |       105426 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-10 00:05:... |
+   28 |         3 | contemporary_indian | bedroom      |   100000 |       100934 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-09 21:05:... |
+   29 |        11 | rustic_indian       | study_room   |   150000 |       132048 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-11 04:05:... |
+   30 |         7 | traditional_indian  | living_room  |    60000 |        54197 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-11 05:05:... |
+   31 |         4 | contemporary_indian | kitchen      |   100000 |       105357 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-12 19:05:... |
+   32 |         8 | traditional_indian  | kitchen      |   150000 |        71553 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-11 22:05:... |
+   33 |         5 | rajasthani_mughal   | study_room   |    60000 |        29386 | Luxury          | moderate           | http://127.0.0.1:... | 2026-02-13 05:05:... |
+   34 |         7 | rustic_indian       | living_room  |   150000 |        44104 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-13 08:05:... |
+   35 |        11 | traditional_indian  | kitchen      |    25000 |        54168 | Minimal         | minimal            | http://127.0.0.1:... | 2026-02-13 22:05:... |
+   36 |         3 | contemporary_indian | living_room  |    60000 |        58324 | Moderate        | moderate           | http://127.0.0.1:... | 2026-02-14 04:05:... |
+   37 |         6 | rajasthani_mughal   | study_room   |    60000 |        65622 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-15 15:05:... |
+   38 |         5 | contemporary_indian | bedroom      |    25000 |       107660 | Minimal         | minimal            | http://127.0.0.1:... | 2026-02-15 17:05:... |
+   39 |         4 | traditional_indian  | bedroom      |    25000 |        61167 | Moderate        | minimal            | http://127.0.0.1:... | 2026-02-16 13:05:... |
+   40 |         9 | traditional_indian  | living_room  |   100000 |        15513 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-16 00:05:... |
+   41 |         4 | rajasthani_mughal   | study_room   |    60000 |       131358 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-17 02:05:... |
+   42 |         6 | rustic_indian       | bedroom      |   150000 |        53519 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-17 09:05:... |
+   43 |         8 | contemporary_indian | kitchen      |    60000 |       101042 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-18 09:05:... |
+   44 |         5 | traditional_indian  | study_room   |    60000 |        77034 | Moderate        | moderate           | http://127.0.0.1:... | 2026-02-18 02:05:... |
+   45 |         2 | traditional_indian  | bedroom      |    60000 |        24883 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-18 22:05:... |
+   46 |         4 | traditional_indian  | living_room  |    25000 |        31285 | Moderate        | minimal            | http://127.0.0.1:... | 2026-02-18 21:05:... |
+   47 |         7 | rustic_indian       | bedroom      |    60000 |        50841 | Moderate        | moderate           | http://127.0.0.1:... | 2026-02-20 15:05:... |
+   48 |        11 | contemporary_indian | bedroom      |    60000 |       101966 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-20 09:05:... |
+   49 |         4 | rustic_indian       | study_room   |    25000 |        55763 | Minimal         | minimal            | http://127.0.0.1:... | 2026-02-21 00:05:... |
+   50 |         8 | traditional_indian  | bedroom      |    60000 |        21403 | Moderate        | moderate           | http://127.0.0.1:... | 2026-02-21 12:05:... |
+   51 |         2 | contemporary_indian | living_room  |    60000 |        54572 | Minimal         | moderate           | http://127.0.0.1:... | 2026-02-22 15:05:... |
+   52 |         7 | traditional_indian  | bedroom      |    25000 |        49916 | Moderate        | minimal            | http://127.0.0.1:... | 2026-02-22 07:05:... |
+   53 |         3 | rajasthani_mughal   | bedroom      |   100000 |        50251 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-23 06:05:... |
+   54 |         3 | contemporary_indian | living_room  |   150000 |        77840 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-22 22:05:... |
+   55 |         2 | contemporary_indian | living_room  |   100000 |        99226 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-24 18:05:... |
+   56 |         6 | rajasthani_mughal   | living_room  |   100000 |        93625 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-24 08:05:... |
+   57 |        11 | traditional_indian  | living_room  |    60000 |        76557 | Moderate        | moderate           | http://127.0.0.1:... | 2026-02-25 16:05:... |
+   58 |         9 | rustic_indian       | kitchen      |    25000 |       137976 | Moderate        | minimal            | http://127.0.0.1:... | 2026-02-25 01:05:... |
+   59 |         2 | contemporary_indian | living_room  |   150000 |        56576 | Minimal         | luxury             | http://127.0.0.1:... | 2026-02-26 07:05:... |
+   60 |         4 | rajasthani_mughal   | kitchen      |   100000 |       116142 | Moderate        | luxury             | http://127.0.0.1:... | 2026-02-26 01:05:... |
+   61 |        12 | contemporary_indian | study_room   |    60000 |            0 | Luxury          | moderate           | http://127.0.0.1:... | 2026-02-26 20:31:... |
+   62 |        12 | traditional_indian  | study_room   |    60000 |        39500 | Luxury          | moderate           |                      | 2026-02-26 20:53:... | [{"total_cost": 3...
+   63 |        12 | contemporary_indian | study_room   |    25000 |        24500 | Luxury          | minimal            | http://127.0.0.1:... | 2026-02-27 05:02:... | [{"total_cost": 2...
+   64 |        12 | rustic_indian       | study_room   |    60000 |        60000 | Luxury          | moderate           | http://127.0.0.1:... | 2026-02-27 05:03:... | [{"total_cost": 6...
+   65 |        13 | traditional_indian  | study_room   |    60000 |        59000 | Luxury          | moderate           | http://127.0.0.1:... | 2026-02-27 05:54:... | [{"total_cost": 5...
+   66 |        13 | rustic_indian       | study_room   |   100000 |        76500 | Luxury          | luxury             | http://127.0.0.1:... | 2026-02-27 05:56:... | [{"total_cost": 7...
+
+Showing 66 of 66 records
+--------------------------------------------------------------------------------
